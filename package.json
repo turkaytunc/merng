@@ -5,9 +5,16 @@
   "main": "index.js",
   "scripts": {
     "commit": "sh commit.sh",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.19.0",
+    "graphql": "^15.4.0",
+    "mongoose": "^5.10.11",
+    "nodemon": "^2.0.6"
+  }
 }
