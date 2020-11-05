@@ -1,21 +1,10 @@
 const { ApolloServer } = require('apollo-server');
-const gql = require('graphql-tag');
+
 const mongoose = require('mongoose');
 
 const { mongoConnectionString, PORT } = require('./config');
 const { resolvers } = require('./resolvers/resolvers');
-
-const typeDefs = gql`
-  type Post {
-    id: ID!
-    body: String!
-    createdAt: String!
-    username: String!
-  }
-  type Query {
-    getPosts: [Post]
-  }
-`;
+const { typeDefs } = require('./typedefs/typeDefs');
 
 const server = new ApolloServer({
   typeDefs,
