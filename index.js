@@ -1,5 +1,8 @@
 const { ApolloServer } = require('apollo-server');
 const gql = require('graphql-tag');
+const mongoose = require('mongoose');
+
+const { mongoConnectionString } = require('./config');
 
 const typeDefs = gql`
   type Query {
@@ -18,6 +21,11 @@ const server = new ApolloServer({
   resolvers,
 });
 
-server.listen({ port: 4000 }).then((res) => {
-  console.log(`Server running at ${res.url}`);
-});
+mongoose
+  .connect(mongoConnectionString, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
+  .then(() => console.log('Connected to mongo atlas'))
+  .then(() => server.listen({ port: 4000 }))
+  .then((res) => console.log(`Server running at ${res.url}`));
