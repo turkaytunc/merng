@@ -3,7 +3,7 @@ const { ApolloServer } = require('apollo-server');
 const mongoose = require('mongoose');
 
 const { mongoConnectionString, PORT } = require('./config');
-const { resolvers } = require('./resolvers/resolvers');
+const resolvers = require('./resolvers/');
 const { typeDefs } = require('./typedefs/typeDefs');
 
 const server = new ApolloServer({
