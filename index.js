@@ -3,9 +3,7 @@ const gql = require('graphql-tag');
 const mongoose = require('mongoose');
 
 const { mongoConnectionString, PORT } = require('./config');
-
-const Post = require('./models/Post');
-const User = require('./models/User');
+const { resolvers } = require('./resolvers/resolvers');
 
 const typeDefs = gql`
   type Post {
@@ -18,20 +16,6 @@ const typeDefs = gql`
     getPosts: [Post]
   }
 `;
-
-const resolvers = {
-  Query: {
-    getPosts: async () => {
-      try {
-        const posts = await Post.find();
-
-        return posts;
-      } catch (err) {
-        throw new Error(err);
-      }
-    },
-  },
-};
 
 const server = new ApolloServer({
   typeDefs,
